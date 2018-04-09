@@ -1,0 +1,132 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "extensions_cse0_fileUris": {
+            "value": null
+        },
+        "extensions_cse0_storageAccountName": {
+            "value": null
+        },
+        "extensions_cse0_storageAccountKey": {
+            "value": null
+        },
+        "extensions_cse0_commandToExecute": {
+            "value": null
+        },
+        "extensions_cse1_fileUris": {
+            "value": null
+        },
+        "extensions_cse1_storageAccountName": {
+            "value": null
+        },
+        "extensions_cse1_storageAccountKey": {
+            "value": null
+        },
+        "extensions_cse1_commandToExecute": {
+            "value": null
+        },
+        "extensions_cse0_fileUris_1": {
+            "value": null
+        },
+        "extensions_cse0_storageAccountName_1": {
+            "value": null
+        },
+        "extensions_cse0_storageAccountKey_1": {
+            "value": null
+        },
+        "extensions_cse0_commandToExecute_1": {
+            "value": null
+        },
+        "virtualNetworks_k8s_vnet_94687D03_name": {
+            "value": null
+        },
+        "storageAccounts_uxswflnrewkkamstr0_name": {
+            "value": null
+        },
+        "virtualMachines_k8s_agent_94687D03_0_name": {
+            "value": null
+        },
+        "virtualMachines_k8s_agent_94687D03_1_name": {
+            "value": null
+        },
+        "loadBalancers_k8s_master_lb_94687D03_name": {
+            "value": null
+        },
+        "storageAccounts_00uxswflnrewkkaagnt0_name": {
+            "value": null
+        },
+        "virtualMachines_k8s_master_94687D03_0_name": {
+            "value": null
+        },
+        "networkInterfaces_k8s_agent_94687D03_nic_0_name": {
+            "value": null
+        },
+        "networkInterfaces_k8s_agent_94687D03_nic_1_name": {
+            "value": null
+        },
+        "routeTables_k8s_master_94687D03_routetable_name": {
+            "value": null
+        },
+        "containerServices_jfv_test_cluster_name": {
+            "value": null
+        },
+        "networkInterfaces_k8s_master_94687D03_nic_0_name": {
+            "value": null
+        },
+        "loadBalancers_k8s_master_internal_lb_94687D03_name": {
+            "value": null
+        },
+        "networkSecurityGroups_k8s_master_94687D03_nsg_name": {
+            "value": null
+        },
+        "availabilitySets_agent_availabilitySet_94687D03_name": {
+            "value": null
+        },
+        "availabilitySets_master_availabilityset_94687D03_name": {
+            "value": null
+        },
+        "extensions_cse0_name": {
+            "value": null
+        },
+        "extensions_cse1_name": {
+            "value": null
+        },
+        "subnets_k8s_subnet_name": {
+            "value": null
+        },
+        "extensions_cse0_name_1": {
+            "value": null
+        },
+        "securityRules_allow_ssh_name": {
+            "value": null
+        },
+        "publicIPAddresses_k8s_master_ip_jfv_test_c_jfv_acs_e39b9bmgmt_94687D03_name": {
+            "value": null
+        },
+        "securityRules_allow_kube_tls_name": {
+            "value": null
+        },
+        "inboundNatRules_SSH_k8s_master_94687D03_0_name": {
+            "value": null
+        },
+        "loadBalancers_k8s_master_internal_lb_94687D03_id": {
+            "value": null
+        },
+        "loadBalancers_k8s_master_internal_lb_94687D03_id_1": {
+            "value": null
+        },
+        "loadBalancers_k8s_master_lb_94687D03_id": {
+            "value": null
+        },
+        "loadBalancers_k8s_master_lb_94687D03_id_1": {
+            "value": null
+        },
+        "loadBalancers_k8s_master_lb_94687D03_id_2": {
+            "value": null
+        },
+        "loadBalancers_k8s_master_lb_94687D03_id_3": {
+            "value": null
+        }
+    }
+}
