@@ -1,0 +1,101 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceNameDTL": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the ACS resource."
+            }
+        },
+        "dnsNamePrefix": {
+            "type": "string",
+            "metadata": {
+                "description": "Sets the Domain name prefix for the Master nodes in a cluster.  The concatenation of the domain name and the regionalized DNS zone make up the fully qualified domain name associated with the public IP address."
+            }
+        },
+        "linuxAdminUsernameDTL": {
+            "type": "string",
+            "defaultValue": "azureuser",
+            "metadata": {
+                "description": "User name for the Linux Virtual Machines."
+            }
+        },
+        "sshRSAPublicKeyDTL": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Configure all linux machines with the SSH RSA public key string.  Your key should include three parts, for example 'ssh-rsa AAAAB...snip...UcyupgH azureuser@linuxvm'"
+            }
+        },
+        "servicePrincipalClientIdDTL": {
+            "metadata": {
+                "description": "Client ID (used by cloudprovider)"
+            },
+            "type": "securestring"
+        },
+        "servicePrincipalClientSecretDTL": {
+            "metadata": {
+                "description": "The Service Principal Client Secret."
+            },
+            "type": "securestring"
+        }
+    },
+    "variables": {
+        "templateLinkACS": "https://raw.githubusercontent.com/neumanndaniel/devtestlab/master/Kubernetes/acs.json"
+    },
+    "resources": [
+        {
+            "apiVersion": "[providers('Microsoft.Resources','deployments').apiVersions[0]]",
+            "type": "Microsoft.Resources/deployments",
+            "name": "[concat(parameters('resourceNameDTL'),'-acs')]",
+            "properties": {
+              "mode": "Incremental",
+              "templateLink": {
+                "uri": "[variables('templateLinkACS')]",
+                "contentVersion": "1.0.0.0"
+              },
+              "parameters": {
+                "resourceName": {
+                    "value": "[parameters('resourceNameDTL')]"
+                },
+                "linuxAdminUsername": {
+                    "value": "[parameters('linuxAdminUsernameDTL')]"
+                },
+                "sshRSAPublicKey": {
+                    "value": "[parameters('sshRSAPublicKeyDTL')]"
+                },
+                "masterDnsNamePrefix": {
+                    "value": "[concat(parameters('dnsNamePrefix'),'mgmt')]"
+                },
+                "agentDnsNamePrefix": {
+                    "value": "[concat(parameters('dnsNamePrefix'),'agents')]"
+                },
+                "agentCount": {
+                    "value": 3
+                },
+                "agentVMSize": {
+                    "value": "Standard_A2_v2"
+                },
+                "orchestratorType": {
+                    "value": "Kubernetes"
+                },
+                "masterCount": {
+                    "value": 1
+                },
+                "osType": {
+                    "value": "Linux"
+                },
+                "ukRegion": {
+                    "value": false
+                },
+                "servicePrincipalClientId": {
+                    "value": "[parameters('servicePrincipalClientIdDTL')]"
+                },
+                "servicePrincipalClientSecret": {
+                    "value": "[parameters('servicePrincipalClientSecretDTL')]"
+                }
+              }
+            }
+        }
+    ]
+}
