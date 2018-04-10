@@ -249,7 +249,7 @@
             "properties": {
               "orchestratorProfile": {
                 "orchestratorType": "Kubernetes",
-                "orchestratorVersion": "1.7.0"
+                "orchestratorVersion": "1.7"
               },
               "customProfile": {
                 "orchestrator": "Kubernetes"
