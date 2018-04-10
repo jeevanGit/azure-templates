@@ -241,48 +241,58 @@
     },
     "resources": [
         {
-            "apiVersion": "2017-01-31",
-            "type": "Microsoft.ContainerService/containerServices",
-            "location": "[resourceGroup().location]",
             "name": "[variables('resourceName')]",
+            "type": "Microsoft.ContainerService/containerServices",
+            "apiVersion": "2017-07-01",
+            "location": "[resourceGroup().location]",
+            "tags": {},
             "properties": {
-                "orchestratorProfile": {
-                    "orchestratorType": "Kubernetes",
-                    "orchestratorRelease": "1.8",
-                    "kubernetesConfig": {
-                      "apiServerConfig": {
-                        "--admission-control":  "NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,ResourceQuota,AlwaysPullImages"
-                      }
-                    }
-                  },
-                "masterProfile": {
-                    "count": "[variables('masterCount')]",
-                    "dnsPrefix": "[variables('mastersEndpointDNSNamePrefix')]"
-                },
-                "agentPoolProfiles": [
+              "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.8"
+              },
+              "customProfile": {
+                "orchestrator": "Kubernetes"
+              },
+              "servicePrincipalProfile": {
+                "clientId": "2ddba07b-95b9-4d45-b224-f03afd5eefbd",
+                "secret": "tdadmin2018"
+              },
+              "masterProfile": {
+                "count": "1",
+                "dnsPrefix": "[variables('masterCount')]",
+                "vmSize": "[variables('agentVMSize')]"
+              },
+              "agentPoolProfiles": [
+                {
+                  "name": "agentpool",
+                  "count": "[variables('agentCount')]",
+                  "vmSize": "[variables('agentVMSize')]",
+                  "dnsPrefix": "[variables('agentsEndpointDNSNamePrefix')]",
+                  "osType": "[variables('osType')]"
+                }
+              ],
+              "windowsProfile": {
+                "adminUsername": "jvarughese",
+                "adminPassword": "Architech2018Azure"
+              },
+              "linuxProfile": {
+                "adminUsername": "jvarughese",
+                "ssh": {
+                  "publicKeys": [
                     {
-                        "name": "agentpool",
-                        "count": "[variables('agentCount')]",
-                        "vmSize": "[variables('agentVMSize')]",
-                        "dnsPrefix": "[variables('agentsEndpointDNSNamePrefix')]",
-                        "osType": "[variables('osType')]"
+                      "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8ujxcfRR4df4clP8up2LSQIB0w8CaQVLEFsiSnhgfXtLTR+QbrXhVpMvayhXpCCTJfqOSF0pGGEd+aEO1febNhq9eC0U/uL6VcD1h6AFRrnAeVe/T95AuFqbRJ8PVqegzLdan0kY/IbCbSt1tilBFFNKqxSADFufhrOj1Tt5qP/me/X6QFyypQeQXeNPIuDdCiQPppaKC7ZbmBUQDqbCsm2zINt1L1PE0LhoDLJuAE6EDwDLxnhEXBijumQzVSWpXvy2nqGrOjtaPZW6A1WH6dGEBjtj3HgWMQwuihwbq7nBILDAeOlJkUWD6SVyEz314K4KIHLu0otBlM4H1W8vR jvarughese@architech.ca"
                     }
-                ],
-                "diagnosticsProfile": "[variables('diagnosticProfileFields')[variables('isUK')]]",
-                "linuxProfile": {
-                    "adminUsername": "[variables('adminUsername')]",
-                    "ssh": {
-                        "publicKeys": [
-                            {
-                                "keyData": "[variables('sshRSAPublicKey')]"
-                            }
-                        ]
-                    }
-                },
-                "windowsProfile": "[variables('windowsProfileFields')[variables('useWindowsOnKubernetes')]]",
-                "servicePrincipalProfile": "[variables('servicePrincipalFields')[variables('useServicePrincipal')]]"
+                  ]
+                }
+              },
+              "diagnosticsProfile": {
+                "vmDiagnostics": {
+                  "enabled": false
+                }
+              }
             }
-        }
+          }
     ],
     "outputs": {
         "masterFQDN": {
